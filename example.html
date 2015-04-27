@@ -1,0 +1,1034 @@
+<html class=" evernoteSafari">
+
+<head>
+    <title>Linear Guage Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="Chart.LinearGauge.js"></script>
+    <style type="text/css">
+    #legend-2-holder li:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    #legend-7-holder {
+        display: block;
+        position: relative;
+        padding: 7px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        width: 100%;
+        height: auto;
+        min-height: 27px;
+    }
+    
+    #legend-7-holder span:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    #legend-9-holder {
+        display: block;
+        float: left;
+        padding: 7px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        width: 100px;
+        height: auto;
+        min-height: 210px;
+    }
+    
+    #legend-9-holder span:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    </style>
+    <style id="style-1-cropbar-clipper">
+    /* Copyright 2014 Evernote Corporation. All rights reserved. */
+    
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255, 255, 255, .38) solid !important;
+        border-radius: 4px !important;
+    }
+    
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="width: 30%; float: left; padding: 20px;">
+        <p>Basic chart</p>
+        <canvas id="canvas1" height="425" width="510" style="width: 510px; height: 425px;"></canvas>
+    </div>
+    <div style="width: 30%; float: left; padding: 20px;">
+        <p>Chart with major and minor ticks, axis label units and few values</p>
+        <canvas id="canvas2" height="425" width="511" style="width: 511px; height: 425px;"></canvas>
+        <div>
+            <ul id="legend-2-holder" style="list-style-type: none;">
+                <li style=""><span style="background-color:#51f40b; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>Tom</li>
+                <li style=""><span style="background-color:#fbf404; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>Jane</li>
+                <li style=""><span style="background-color:#fb04bd; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>Erik</li>
+            </ul>
+        </div>
+    </div>
+    <div style="width: 30%; float: left; padding: 20px;">
+        <p>Chart with custom ticks and label positions</p>
+        <canvas id="canvas3" height="425" width="510" style="width: 510px; height: 425px;"></canvas>
+        <div>
+            <ul id="legend-3-holder" style="list-style-type: none;">
+                <li style=""><span style="background-color:#51f40b; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>Tom</li>
+                <li style=""><span style="background-color:#fbf404; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>John</li>
+                <li style=""><span style="background-color:#fb04bd; display: block; float: left; margin-right: 10px; width: 15px; height: 15px;"></span>Eva</li>
+            </ul>
+        </div>
+    </div>
+    <div style="width: 100%; float: left; padding: 0px;">
+        <p>Chart with horizontal orientation</p>
+        <canvas id="canvas4" height="235" width="1568" style="width: 1568px; height: 235px;"></canvas>
+    </div>
+    <div style="width: 100%; float: left; padding: 0px;">
+        <p>One more chart with different styling</p>
+        <canvas id="canvas5" height="235" width="1568" style="width: 1568px; height: 235px;"></canvas>
+    </div>
+    <div style="width: 30%; float: left; padding: 20px;">
+        <p>Chart with scale color ranges</p>
+        <canvas id="canvas6" height="425" width="510" style="width: 510px; height: 425px;"></canvas>
+    </div>
+    <div style="width: 30%; float: left; padding: 20px; height: auto;">
+        <p>Updating values</p>
+        <canvas id="canvas7" height="255" width="511" style="width: 511px; height: 255px;"></canvas>
+        <div id="legend-7-holder">
+            <div style="background-color:#352bfd; display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Meat</span>
+            <div style="background-color:#e89a17; display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Milk</span>
+            <div style="background-color:#51f40b; display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Fruits</span>
+            <div style="background-color:#fc03ef; display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Chocolate</span></div>
+    </div>
+    <div style="width: 30%; float: left; padding: 20px;">
+        <p>Color ranges</p>
+        <canvas id="canvas8" height="425" width="510" style="width: 510px; height: 425px;"></canvas>
+    </div>
+    <div style="width: 30%; float: left; padding: 0px;">
+        <p>Point indicator type</p>
+        <div style="display: block; float: left; width: 45%;">
+            <canvas id="canvas9" height="311" width="212" style="display: block; float: left; width: 212px; height: 311px;"></canvas>
+        </div>
+        <div id="legend-9-holder">
+            <div style="display: block; width: 100%; height: 30px;">
+                <div style="background-color:red;display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Flat</span></div>
+            <div style="display: block; width: 100%; height: 30px;">
+                <div style="background-color:blue;display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">House</span></div>
+            <div style="display: block; width: 100%; height: 30px;">
+                <div style="background-color:green;display: block; float: left; margin: 6px; width: 15px; height: 15px;"></div><span style=" display: block; float: left; margin: 6px; ">Office</span></div>
+        </div>
+    </div>
+    <div style="width: 60%; float: left; padding: 20px;">
+        <p>One more point indicator type</p>
+        <canvas id="canvas10" height="408" width="981" style="width: 981px; height: 408px;"></canvas>
+    </div>
+    <div style="width: 46%; float: left; padding: 20px;">
+        <p>One more point indicator type</p>
+        <canvas id="canvas11" height="532" width="761" style="width: 761px; height: 532px;"></canvas>
+    </div>
+    <div style="width: 47%; float: left; padding: 20px;">
+        <p>Custom image point indicator type</p>
+        <canvas id="canvas12" height="543" width="777" style="width: 777px; height: 543px;"></canvas>
+    </div>
+    <script>
+    var randomScalingFactor = function(k) {
+        return Math.round(Math.random() * k)
+    };
+    </script>
+    <!--DataSets-->
+    <script>
+    var barChartData1 = [{
+        value: 370,
+        offset: 9,
+        highlightFill: '#f40b9d'
+    }];
+    var barChartData2 = [{
+        value: 70,
+        offset: 20,
+        highlightFill: '#9bfd53',
+        label: 'Tom'
+    }, {
+        value: 320,
+        offset: 10,
+        color: '#fbf404',
+        highlightFill: '#fcf85a',
+        label: 'Jane'
+    }, {
+        value: 112,
+        offset: 30,
+        color: '#fb04bd',
+        highlightFill: '#fd6cd9',
+        label: 'Erik'
+    }];
+    var barChartData3 = [{
+        value: 470,
+        width: 20,
+        offset: 20,
+        label: 'Tom'
+    }, {
+        value: 320,
+        width: 15,
+        offset: 17,
+        color: '#fbf404',
+        label: 'John'
+    }, {
+        value: 112,
+        width: 10,
+        offset: 15,
+        color: '#fb04bd',
+        label: 'Eva'
+    }];
+    var barChartData4 = [{
+        value: 70,
+        offset: 20
+    }, {
+        value: 320,
+        offset: 10,
+        color: '#fbf404'
+    }, {
+        value: 112,
+        offset: 30,
+        color: '#fb04bd'
+    }];
+    var barChartData5 = [{
+        value: 2.2,
+        width: 12,
+        offset: -5,
+        color: '#e1e113'
+    }, {
+        value: 3.5,
+        width: 4,
+        offset: -5,
+        color: '#fb04bd'
+    }, {
+        value: -1.1,
+        width: 8,
+        offset: -5,
+        color: '#fe1230'
+    }];
+    var barChartData6 = [{
+        value: 134
+    }];
+    var barChartData7 = [{
+        value: 164,
+        offset: 8,
+        color: '#352bfd',
+        label: 'Meat'
+    }, {
+        value: 114,
+        offset: 17,
+        color: '#e89a17',
+        label: 'Milk'
+    }, {
+        value: 44,
+        offset: 26,
+        label: 'Fruits'
+    }, {
+        value: 78,
+        offset: 35,
+        color: '#fc03ef',
+        label: 'Chocolate'
+    }];
+    var barChartData8 = [{
+        value: 39,
+        offset: 8,
+        color: '#352bfd',
+        colorRanges: [{
+            startpoint: -50,
+            breakpoint: -30,
+            color: '#6154ab'
+        }, {
+            startpoint: -30,
+            breakpoint: 30,
+            color: '#74f40b'
+        }, {
+            startpoint: 30,
+            breakpoint: 50,
+            color: '#fd0902'
+        }]
+    }, {
+        value: 39,
+        offset: 17,
+        color: '#352bfd',
+        colorRanges: [{
+            startpoint: -50,
+            breakpoint: -30,
+            color: '#6154ab'
+        }, {
+            startpoint: -30,
+            breakpoint: 30,
+            color: '#74f40b'
+        }, {
+            startpoint: 30,
+            breakpoint: 50,
+            color: '#fd0902'
+        }]
+    }, {
+        value: 39,
+        offset: 26,
+        color: '#352bfd',
+        colorRanges: [{
+            startpoint: -50,
+            breakpoint: -30,
+            color: '#6154ab'
+        }, {
+            startpoint: -30,
+            breakpoint: 30,
+            color: '#74f40b'
+        }, {
+            startpoint: 30,
+            breakpoint: 50,
+            color: '#fd0902'
+        }]
+    }];
+    var barChartData9 = [];
+    barChartData9.push({
+        value: 0,
+        indicator: 'point',
+        width: 12,
+        offset: 7,
+        color: 'red',
+        label: 'Flat'
+    });
+    barChartData9.push({
+        value: 0,
+        indicator: 'point',
+        shape: 'rect',
+        width: 12,
+        height: 12,
+        offset: 12,
+        color: 'blue',
+        label: 'House'
+    });
+    barChartData9.push({
+        value: 0,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 12,
+        height: 12,
+        offset: 17,
+        color: 'green',
+        label: 'Office'
+    });
+
+    var barChartData10 = [];
+    barChartData10.push({
+        value: 0,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 18,
+        height: 25,
+        offset: 8,
+        color: '#1b02f7',
+        colorRanges: [{
+            startpoint: -150,
+            breakpoint: -100,
+            color: '#1b02f7'
+        }, {
+            startpoint: -100,
+            breakpoint: -30,
+            color: '#8888fb'
+        }, {
+            startpoint: -30,
+            breakpoint: 30,
+            color: '#31d801'
+        }, {
+            startpoint: 30,
+            breakpoint: 100,
+            color: '#e1e10d'
+        }, {
+            startpoint: 100,
+            breakpoint: 150,
+            color: '#d90000'
+        }],
+        tooltipRanges: [{
+            startpoint: -150,
+            breakpoint: -100,
+            tooltip: 'Very Low'
+        }, {
+            startpoint: -20,
+            breakpoint: 20,
+            tooltip: 'Normal'
+        }, {
+            startpoint: 100,
+            breakpoint: 150,
+            tooltip: 'High'
+        }]
+    });
+    barChartData10.push({
+        value: 75,
+        indicator: 'point',
+        shape: 'inverted-triangle',
+        width: 9,
+        height: 12,
+        offset: -16,
+        color: '#a9abb8'
+    });
+    barChartData10.push({
+        value: -75,
+        indicator: 'point',
+        shape: 'inverted-triangle',
+        width: 9,
+        height: 12,
+        offset: -16,
+        color: '#a9abb8'
+    });
+
+    var barChartData11 = [];
+    barChartData11.push({
+        value: 3,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#32fd06'
+    });
+    barChartData11.push({
+        value: -3,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#32fd06'
+    });
+    barChartData11.push({
+        value: 7,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#fef105'
+    });
+    barChartData11.push({
+        value: -7,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#fef105'
+    });
+    barChartData11.push({
+        value: 12,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#fe0c05'
+    });
+    barChartData11.push({
+        value: -12,
+        indicator: 'point',
+        shape: 'triangle',
+        width: 9,
+        height: 12,
+        offset: 10,
+        color: '#fe0c05'
+    });
+    barChartData11.push({
+        value: 0,
+        indicator: 'point',
+        shape: 'bowtie',
+        width: 46,
+        height: 16,
+        offset: 0,
+        color: '#1b02f7',
+        colorRanges: [{
+            startpoint: -15,
+            breakpoint: -10,
+            color: 'red'
+        }, {
+            startpoint: -10,
+            breakpoint: -5,
+            color: '#f7f706'
+        }, {
+            startpoint: -5,
+            breakpoint: 5,
+            color: '#49f906'
+        }, {
+            startpoint: 5,
+            breakpoint: 10,
+            color: '#f7f706'
+        }, {
+            startpoint: 10,
+            breakpoint: 15,
+            color: 'red'
+        }]
+    });
+    barChartData11.push({
+        value: 10,
+        indicator: 'point',
+        shape: 'diamond',
+        width: 46,
+        height: 16,
+        offset: 0,
+        color: '#65f305',
+        colorRanges: [{
+            startpoint: -15,
+            breakpoint: -10,
+            color: 'blue'
+        }, {
+            startpoint: -10,
+            breakpoint: 10,
+            color: '#49f906'
+        }, {
+            startpoint: 10,
+            breakpoint: 15,
+            color: 'blue'
+        }]
+    });
+    barChartData11.push({
+        value: 4,
+        width: 8,
+        height: 16,
+        offset: -35,
+        color: '#b08948',
+        colorRanges: [{
+            startpoint: -15,
+            breakpoint: -5,
+            color: 'red'
+        }, {
+            startpoint: -5,
+            breakpoint: 5,
+            color: 'green'
+        }, {
+            startpoint: 5,
+            breakpoint: 15,
+            color: 'red'
+        }]
+    });
+
+    var barChartData12 = [];
+    barChartData12.push({
+        value: 4,
+        width: 30,
+        height: 40,
+        offset: -27,
+        img: 'hand-pointer.png'
+    });
+    barChartData12.push({
+        value: 0,
+        width: 30,
+        height: 30,
+        offset: -15,
+        img: 'diamond3.png'
+    });
+    barChartData12.push({
+        value: 0,
+        width: 30,
+        height: 30,
+        offset: -15,
+        img: 'shapes7.png'
+    });
+    </script>
+    <script>
+    window.onload = function() {
+        var ctx1 = document.getElementById("canvas1").getContext("2d");
+        window.myBar1 = new Chart(ctx1).Linear(barChartData1, {
+            range: {
+                startValue: -100,
+                endValue: 500
+            },
+            responsive: true,
+            scaleFontSize: 12,
+            axisWidth: 6,
+            tickLabels: {
+                interval: 50
+            },
+            majorTicks: {
+                interval: 100
+            }
+        });
+        var ctx2 = document.getElementById("canvas2").getContext("2d");
+        window.myBar2 = new Chart(ctx2).Linear(barChartData2, {
+            range: {
+                startValue: -100,
+                endValue: 500
+            },
+            responsive: true,
+            scaleFontSize: 12,
+            axisWidth: 6,
+            axisColor: '#3c5b8a',
+            tickLabels: {
+                units: '$',
+                interval: 100,
+                customValues: [],
+                offset: -9,
+                color: '#3c5b8a'
+            },
+            majorTicks: {
+                interval: 100,
+                customValues: [],
+                width: 6,
+                height: 2,
+                offset: 0,
+                color: '#fff'
+            },
+            minorTicks: {
+                interval: 50,
+                customValues: [],
+                width: 3,
+                height: 1,
+                offset: -1.5,
+                color: '#fff'
+            },
+            legendTemplate: '<ul id=\"legend-2-holder\" style=\"list-style-type: none;\">' + '<% for (var i=0; i<datasets.length; i++) { %>' + '<li style=\"\">' + '<span style=\"background-color:<%=datasets[i].bar.fillColor%>;' + ' display: block; float: left; margin-right: 10px; width: 15px; height: 15px;\"></span>' + '<% if (datasets[i].bar.label) { %><%= datasets[i].bar.label %><% } %>' + '</li>' + '<% } %>' + '</ul>'
+                //geometry: 'horizontal'
+        });
+        var leg2 = document.createElement("div");
+        leg2.innerHTML = window.myBar2.generateLegend();
+        document.getElementById("canvas2").parentNode.appendChild(leg2);
+
+        window.Chart.helpers.each(leg2.firstChild.childNodes, function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseover", function() {
+                var activeSegment = window.myBar2.datasets[ind];
+                activeSegment.bar.save();
+                window.myBar2.showTooltip([activeSegment.bar]);
+                activeSegment.bar.restore();
+            });
+        }, this);
+
+        window.Chart.helpers.addEvent(leg2.firstChild, "mouseout", function() {
+            window.myBar2.draw();
+            window.myBar2.activeElements = [];
+        });
+
+        var ctx3 = document.getElementById("canvas3").getContext("2d");
+        window.myBar3 = new Chart(ctx3).Linear(barChartData3, {
+            range: {
+                startValue: -100,
+                endValue: 500
+            },
+            responsive: true,
+            animationEasing: "easeOutElastic",
+            scaleFontSize: 12,
+            axisWidth: 6,
+            axisColor: '#9e343f',
+            majorTicks: {
+                interval: 100,
+                customValues: [-20, 0, 50, 110, 130, 200, 500],
+                width: 6,
+                height: 1,
+                offset: 0,
+                color: '#fff'
+            },
+            tickLabels: {
+                units: '%',
+                interval: 100,
+                customValues: [-20, 0, 50, 110, 130, 200, 500],
+                offset: -9,
+                color: '#777b80'
+            },
+            multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+            legendTemplate: '<ul id=\"legend-3-holder\" style=\"list-style-type: none;\">' + '<% for (var i=0; i<datasets.length; i++) { %>' + '<li style=\"\">' + '<span style=\"background-color:<%=datasets[i].bar.fillColor%>;' + ' display: block; float: left; margin-right: 10px; width: 15px; height: 15px;\"></span>' + '<% if (datasets[i].bar.label) { %><%= datasets[i].bar.label %><% } %>' + '</li>' + '<% } %>' + '</ul>'
+                //geometry: 'horizontal'
+        });
+
+        var leg3 = document.createElement("div");
+        leg3.innerHTML = window.myBar3.generateLegend();
+        document.getElementById("canvas3").parentNode.appendChild(leg3);
+        window.Chart.helpers.each(leg3.firstChild.childNodes, function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseover", function() {
+                var activeSegment = window.myBar3.datasets[ind];
+                activeSegment.bar.save();
+                window.myBar3.showTooltip([activeSegment.bar]);
+                activeSegment.bar.restore();
+            });
+        }, this);
+
+        window.Chart.helpers.addEvent(leg3.firstChild, "mouseout", function() {
+            window.myBar3.draw();
+            window.myBar3.activeElements = [];
+        });
+
+
+        var ctx4 = document.getElementById("canvas4").getContext("2d");
+        window.myBar4 = new Chart(ctx4).Linear(barChartData4, {
+            range: {
+                startValue: 0,
+                endValue: 500
+            },
+            responsive: true,
+            scaleFontSize: 12,
+            axisWidth: 4,
+            tickLabels: {
+                units: '$',
+                interval: 100,
+                customValues: [],
+                offset: -9,
+                color: '#777b80'
+            },
+            geometry: 'horizontal'
+        });
+        var ctx5 = document.getElementById("canvas5").getContext("2d");
+        window.myBar5 = new Chart(ctx5).Linear(barChartData5, {
+            range: {
+                startValue: -2,
+                endValue: 5.5
+            },
+            responsive: true,
+            animationEasing: "easeOutElastic",
+            scaleFontSize: 16,
+            axisWidth: 35,
+            axisColor: '#a4ca91',
+            tickLabels: {
+                units: 'V',
+                interval: 1,
+                customValues: [],
+                offset: 22,
+                color: '#777b80'
+            },
+            majorTicks: {
+                interval: 1,
+                customValues: [],
+                width: 7,
+                height: 1,
+                offset: -15,
+                color: '#fff'
+            },
+            geometry: 'horizontal'
+        });
+        var ctx6 = document.getElementById("canvas6").getContext("2d");
+        window.myBar6 = new Chart(ctx6).Linear(barChartData6, {
+            range: {
+                startValue: -100,
+                endValue: 200
+            },
+            responsive: true,
+            animationEasing: "easeOutElastic",
+            axisColor: '#c5c7cf',
+            majorTicks: {
+                interval: 0,
+                height: 2
+            },
+            minorTicks: {
+                interval: 25,
+                width: 2,
+                offset: -2
+            },
+            tickLabels: {
+                interval: 100
+            },
+            scaleColorRanges: [{
+                start: -50,
+                end: 30,
+                color: '#fe5066'
+            }, {
+                start: 30,
+                end: 130,
+                color: '#82e668'
+            }, {
+                start: 130,
+                end: 180,
+                color: '#1224fc'
+            }],
+            geometry: 'hhorizontal'
+        });
+
+        var ctx7 = document.getElementById("canvas7").getContext("2d");
+        window.myBar7 = new Chart(ctx7).Linear(barChartData7, {
+            range: {
+                startValue: -50,
+                endValue: 50
+            },
+            responsive: true,
+            animationEasing: "easeOutElastic",
+            axisColor: '#c5c7cf',
+            majorTicks: {
+                interval: 0,
+                height: 2
+            },
+            minorTicks: {
+                interval: 25,
+                width: 2,
+                offset: -2
+            },
+            tickLabels: {
+                interval: 25
+            },
+            scaleColorRanges: [{
+                start: -20,
+                end: 0,
+                color: '#fe5066'
+            }, {
+                start: 30,
+                end: 50,
+                color: '#1224fc'
+            }],
+            geometry: 'horizontal',
+            legendTemplate: '<% for (var i=0; i<datasets.length; i++) { %>' + '<div style=\"background-color:<%=datasets[i].bar.fillColor%>;' + ' display: block; float: left; margin: 6px; width: 15px; height: 15px;\"></div>' + '<span style=\" display: block; float: left; margin: 6px; \">' + '<% if (datasets[i].bar.label) { %><%= datasets[i].bar.label %><% } %>' + '</span>' + '<% } %>'
+        });
+        setInterval(function() {
+            for (var i = 0; i < window.myBar7.datasets.length; i++) {
+                window.myBar7.datasets[i].value = randomScalingFactor(90) - 50;
+            }
+            //window.myBar7.removeData();
+            window.myBar7.update();
+        }, 10000);
+        var leg7 = document.createElement("div");
+        leg7.setAttribute('id', 'legend-7-holder');
+        leg7.innerHTML = window.myBar7.generateLegend();
+        document.getElementById("canvas7").parentNode.appendChild(leg7);
+        window.Chart.helpers.each(leg7.getElementsByTagName('span'), function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseover", function() {
+                var activeSegment = window.myBar7.datasets[ind];
+                activeSegment.bar.save();
+                window.myBar7.showTooltip([activeSegment.bar]);
+                activeSegment.bar.restore();
+            });
+        }, this);
+        window.Chart.helpers.each(leg7.getElementsByTagName('span'), function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseout", function() {
+                window.myBar7.draw();
+                window.myBar7.activeElements = [];
+            });
+        }, this);
+
+
+        var ctx8 = document.getElementById("canvas8").getContext("2d");
+        window.myBar8 = new Chart(ctx8).Linear(barChartData8, {
+            range: {
+                startValue: -50,
+                endValue: 50
+            },
+            responsive: true,
+            axisColor: '#c5c7cf',
+            majorTicks: {
+                interval: 0,
+                height: 2
+            },
+            minorTicks: {
+                interval: 25,
+                width: 2,
+                offset: -2
+            },
+            tickLabels: {
+                interval: 25
+            },
+            scaleColorRanges: [{
+                start: 30,
+                end: 50,
+                color: '#fe5066'
+            }, {
+                start: -50,
+                end: -30,
+                color: '#1224fc'
+            }],
+            geometry: 'vertical'
+        });
+        setInterval(function() {
+            window.myBar8.datasets[0].value = randomScalingFactor(90) - 45;
+            window.myBar8.datasets[1].value = randomScalingFactor(90) - 45;
+            window.myBar8.datasets[2].value = randomScalingFactor(90) - 45;
+            window.myBar8.update();
+        }, 10000);
+
+        var ctx9 = document.getElementById("canvas9").getContext("2d");
+        window.myBar9 = new Chart(ctx9).Linear(barChartData9, {
+            range: {
+                startValue: -150,
+                endValue: 150
+            },
+            responsive: true,
+            animationEasing: "easeOutElastic",
+            axisColor: '#c5c7cf',
+            axisWidth: 0,
+            majorTicks: {
+                interval: 50,
+                width: 6,
+                height: 3,
+                offset: 1,
+                color: '#fe013a'
+            },
+            minorTicks: {
+                interval: 6.25,
+                width: 2,
+                height: 2,
+                offset: 0,
+                color: '#e1f305'
+            },
+            tickLabels: {
+                interval: 50,
+                units: 'kW'
+            },
+            multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+            legendTemplate: '<% for (var i=0; i<datasets.length; i++) { %>' + '<div style="display: block; width: 100%; height: 30px;">' + '<div style=\"background-color:<%=datasets[i].bar.fillColor%>;' + 'display: block; float: left; margin: 6px; width: 15px; height: 15px;\"></div>' + '<span style=\" display: block; float: left; margin: 6px; \">' + '<% if (datasets[i].bar.label) { %><%= datasets[i].bar.label %><% } %>' + '</span>' + '</div>' + '<% } %>'
+
+        });
+        setInterval(function() {
+            window.myBar9.datasets[0].value = randomScalingFactor(280) - 140;
+            window.myBar9.datasets[1].value = randomScalingFactor(280) - 140;
+            window.myBar9.datasets[2].value = randomScalingFactor(280) - 140;
+            window.myBar9.update();
+        }, 10000);
+        var leg9 = document.createElement("div");
+        leg9.setAttribute('id', 'legend-9-holder');
+        leg9.innerHTML = window.myBar9.generateLegend();
+        document.getElementById("canvas9").parentNode.parentNode.appendChild(leg9);
+        window.Chart.helpers.each(leg9.getElementsByTagName('span'), function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseover", function() {
+                var activeSegment = window.myBar9.datasets[ind];
+                activeSegment.bar.save();
+                window.myBar9.showTooltip([activeSegment.bar]);
+                activeSegment.bar.restore();
+            });
+        }, this);
+        window.Chart.helpers.each(leg9.getElementsByTagName('span'), function(node, ind) {
+            window.Chart.helpers.addEvent(node, "mouseout", function() {
+                window.myBar9.draw();
+                window.myBar9.activeElements = [];
+            });
+        }, this);
+
+        var ctx10 = document.getElementById("canvas10").getContext("2d");
+        window.myBar10 = new Chart(ctx10).Linear(barChartData10, {
+            range: {
+                startValue: -150,
+                endValue: 150
+            },
+            responsive: true,
+            animationSteps: 90,
+            axisColor: '#c5c7cf',
+            axisWidth: 6,
+            majorTicks: {
+                interval: 50,
+                width: 8,
+                height: 1,
+                offset: 1,
+                color: '#000'
+            },
+            minorTicks: {
+                interval: 12.5,
+                width: 3,
+                height: 1,
+                offset: 0,
+                color: '#000'
+            },
+            tickLabels: {
+                interval: 50,
+                units: 'mA',
+                offset: -17
+            },
+            geometry: 'horizontal',
+            scaleColorRanges: [{
+                start: -150,
+                end: -100,
+                color: '#1b02f7'
+            }, {
+                start: -100,
+                end: -30,
+                color: '#8888fb'
+            }, {
+                start: -30,
+                end: 30,
+                color: '#47fe12'
+            }, {
+                start: 30,
+                end: 100,
+                color: '#e1e10d'
+            }, {
+                start: 100,
+                end: 150,
+                color: '#fe1229'
+            }],
+        });
+        setInterval(function() {
+            window.myBar10.datasets[0].value = randomScalingFactor(280) - 140;
+            window.myBar10.update();
+        }, 10000);
+
+        var ctx11 = document.getElementById("canvas11").getContext("2d");
+        window.myBar11 = new Chart(ctx11).Linear(barChartData11, {
+            range: {
+                startValue: -15,
+                endValue: 15
+            },
+            responsive: true,
+            animationSteps: 90,
+            axisColor: '#e9eaed',
+            axisWidth: 40,
+            majorTicks: {
+                interval: 5,
+                width: 30,
+                height: 1,
+                offset: 0,
+                color: '#a9adb8'
+            },
+            minorTicks: {
+                interval: 1,
+                width: 20,
+                height: 1,
+                offset: 0,
+                color: '#cfd2d8'
+            },
+            tickLabels: {
+                interval: 5,
+                units: '%',
+                offset: 24,
+                color: 'red'
+            },
+            geometry: 'ghorizontal'
+        });
+        setInterval(function() {
+            window.myBar11.datasets[6].value = randomScalingFactor(28) - 14;
+            window.myBar11.datasets[7].value = randomScalingFactor(28) - 14;
+            window.myBar11.datasets[8].value = randomScalingFactor(28) - 14;
+            window.myBar11.update();
+        }, 10000);
+
+        var ctx12 = document.getElementById("canvas12").getContext("2d");
+        window.myBar12 = new Chart(ctx12).Linear(barChartData12, {
+            range: {
+                startValue: -10,
+                endValue: 25
+            },
+            responsive: true,
+            animationSteps: 90,
+            axisColor: '#484284',
+            axisWidth: 4,
+            majorTicks: {
+                interval: 5,
+                width: 3,
+                height: 1,
+                offset: 0,
+                color: '#f3f4f5'
+            },
+            minorTicks: {
+                interval: 1,
+                width: 2,
+                height: 1,
+                offset: 0,
+                color: '#f4f5f7'
+            },
+            tickLabels: {
+                interval: 5,
+                units: '%',
+                offset: 24,
+                color: 'red'
+            },
+            geometry: 'horizontal',
+            legendTemplate: 'Test for custom image points'
+        });
+        //window.myBar12.generateLegend();
+        setInterval(function() {
+            window.myBar12.datasets[0].value = randomScalingFactor(35) - 10;
+            window.myBar12.datasets[1].value = randomScalingFactor(35) - 10;
+            window.myBar12.datasets[2].value = randomScalingFactor(35) - 10;
+            window.myBar12.update();
+        }, 10000);
+    }
+    </script>
+    <span id="buffer-extension-hover-button" style="display: none;position: absolute;z-index: 8675309;width: 100px;height: 25px;background-image: url(http://static.bufferapp.com/images/extensions/img/buffer-hover-icon@1x.png);background-size: 100px 25px;opacity: 0.9;cursor: pointer;"></span></body>
+
+</html>
