@@ -1,6 +1,6 @@
 A linear gauge chart type extension for Chart.js originally conceptualized by [A. Scott McCulloch, PhD](http://www.tapintu.com) and coded by [Alexander V.](https://www.elance.com/s/alexj874/)
 
-#Options
+# Options
 
 All options extend any existing default chart.js settings
 
@@ -48,7 +48,7 @@ All options extend any existing default chart.js settings
 }
 ```
 
-#Dataset properties
+# Dataset properties
 
 All options extend any existing default chart.js settings
 
