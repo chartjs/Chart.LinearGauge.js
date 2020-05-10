@@ -1,5 +1,13 @@
 A linear gauge chart type extension for Chart.js originally conceptualized by [A. Scott McCulloch, PhD](http://www.tapintu.com) and coded by [Alexander V.](https://www.elance.com/s/alexj874/)
 
+# No Longer Maintained
+
+This project is compatible only with Chart.js 1.x.
+
+If you're interested in compatibility with newer versions of Chart.js, please see A. Scott McCulloch's repo https://github.com/scottmcculloch/Chart.LinearGauge.js
+
+If you're simply looking for examples of creating new chart types, please see https://github.com/chartjs/awesome
+
 # Options
 
 All options extend any existing default chart.js settings
